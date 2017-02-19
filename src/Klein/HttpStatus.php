@@ -141,7 +141,22 @@ class HttpStatus
         $this->code = (int) $code;
         return $this;
     }
-
+    /**
+     * Set the HTTP status code & message
+     *
+     * @param int $code
+     * @return HttpStatus
+     */
+    public function set($code)
+    {
+        if (isset(static::$http_messages[ $code ])) {
+            $this->setCode($code);
+            $this->setMessage(static::$http_messages[ $code ]);
+            return $this;
+        } else {
+            return null;
+        }
+    }
     /**
      * Set the HTTP status message
      *
